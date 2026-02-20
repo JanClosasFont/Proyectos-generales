@@ -13,4 +13,4 @@
     <li>Inventory system + game saving feature (in a very long future)</li>
   </ol>
   </details>
-<h4 align="center">Autor: Jan Closas Font</h4>
+<h4 align="center">Author: Jan Closas Font</h4>
