@@ -3,83 +3,139 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        #titulo1{
+            text-align: center;
+            text-decoration: underline;
+            border-radius: 5px;
+            border-color: green;
+        }
+        #vida{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 20%;
+        }
+        #armas{
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+        #alertas{
+            background-color: gray;
+            border-color: azure;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+    </style>
     <title>Las grandiosas judias magicas guerreras to guapas</title>
 </head>
 <body>
-    <h1>Las judias guerreras</h1>
-    <div style="display: block;">
+    <h1 id="titulo1">Las judias guerreras</h1>
+    <div id="vida">
         <p id="Jugador">Jugador: 100</p>
         <p id="Enemigo">Enemigo: 100</p>
     </div>
-    <div>
-        <select id="arma1">
-            <option value="0">Espada</option>
-            <option value="1">Lanza</option>
-            <option value="2">Maza</option>
-            <option value="3">Arco</option>
-        </select>
-        <select id="arma2">
-            <option value="0">Espada</option>
-            <option value="1">Lanza</option>
-            <option value="2">Maza</option>
-            <option value="3">Arco</option>
-        </select>
-        <button id="botonatacar">Atacar</button>
+    <div id="armas">
+        <div id="armas">
+            <select id="arma1">
+                <option value="0">Espada</option>
+                <option value="1">Lanza</option>
+                <option value="2">Maza</option>
+                <option value="3">Arco</option>
+            </select>
+            <select id="arma2">
+                <option value="0">Espada</option>
+                <option value="1">Lanza</option>
+                <option value="2">Maza</option>
+                <option value="3">Arco</option>
+            </select>
+            <button id="botonatacar">Atacar</button>
+        </div>
+        <div>
+            <h2>Daño</h2>
+            <p id="resultadodaño1">Daño de : 0</p>
+            <p id="resultadodaño2">Daño de : 0</p>
+        </div>
+        <div>
+            <h3 style="text-align: center;">Alertas</h3>
+            <div id="alertas">
+                
+            </div>
+        </div>
     </div>
-    <div>
-        <h2>Daño</h2>
-        <p id="resultadodaño1">Daño de : 0</p>
-        <p id="resultadodaño2">Daño de : 0</p>
-    </div>
-
 
     <script>
         let jugador = {
-            vida: 100
+            vida: 1000
         };
 
         let enemigo = {
-            vida: 100,
-            ataque: Math.floor(Math.random() * 2) + 4
+            vida: 1000
         };
 
-        let armas = {
-            opciones: [
-                {Nombre: "Espada", daño: () => Math.floor(Math.random() * 5) + 5},
-                {Nombre: "Lanza", daño: () => Math.floor(Math.random() * 9) + 6},
-                {Nombre: "Maza", daño: () => Math.floor(Math.random() * 3) + 12},
-                {Nombre: "Arco", daño: () => Math.floor(Math.random() * 6) + 3}
-                ]
+        class Arma{
+            constructor(nombre,min,max,critChance,multiplicador){
+                this.nombre = nombre;
+                this.min = min;
+                this.max = max;
+                this.critChance = critChance;
+                this.multiplicador = multiplicador;
             }
 
-        function actualizarpantalla(index1, index2, daño1, daño2){
-            document.getElementById("Jugador").textContent = 
-            "Jugador: " + jugador.vida;
-      
-            document.getElementById("Enemigo").textContent = 
-            "Enemigo: " + enemigo.vida;
+        atacar(){
+            let base = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+            let critico = Math.random() < this.critChance;
+            
+            if(critico){
+                return{
+                    daño: base * this.multiplicador,
+                    critChance: true
+                };
+            }
 
-            document.getElementById("resultadodaño1").textContent = 
-            "Daño de " + armas.opciones[index1].Nombre + ": " + daño1;
+                return{
+                    daño: base,
+                    critChance: false
+                };
+            }
+        }   
 
-            document.getElementById("resultadodaño2").textContent = 
-            "Daño de " + armas.opciones[index2].Nombre + ": " + daño2;
-        };
+        let armas = [
+            new Arma("Espada",5,10,0.20,2),
+            new Arma("Lanza",6,14,0.10,3.5),
+            new Arma("Maza",8,12,0.25,1.7),
+            new Arma("Arco",4,7,0.15,3)
+        ];
 
         function turnojugador(){
-            let index1 = document.getElementById("arma1").value;
-            let index2 = document.getElementById("arma2").value;
-
-            let daño1 = armas.opciones[index1].daño();
-            let daño2 = armas.opciones[index2].daño();
-            let dañototal = daño1 + daño2;
+            let index1 = parseInt(document.getElementById("arma1").value);
+            let index2 = parseInt(document.getElementById("arma2").value);
 
             if (index1 === index2){
-                alert("❌No se puede usar la misma arma dos veces❌")
+                alertas("❌No se puede usar la misma arma dos veces❌")
                 return
             }
 
-            enemigo.vida -= dañototal;
+            let ataque1 = armas[index1].atacar();
+            let ataque2 = armas[index2].atacar();
+
+            let daño1 = ataque1.daño;
+            let daño2 = ataque2.daño;
+            let dañototal = daño1 + daño2;
+
+            if(ataque1.critChance){
+                alertas("¡Critico con " + armas[index1].nombre + "!", "red")
+            }
+            
+            if(ataque2.critChance){
+                alertas("¡Critico con " + armas[index2].nombre + "!", "red")
+            }
+
+            enemigo.vida = Math.max(0, enemigo.vida - dañototal);
 
             if (enemigo.vida > 0){
                 turnoenemigo();
@@ -90,18 +146,50 @@
         };
 
         function turnoenemigo(){
-            jugador.vida -= enemigo.ataque;
-        }
+            let ataqueEnemigo = Math.floor(Math.random() * 6) + 10
+            jugador.vida = Math.max(0, jugador.vida - ataqueEnemigo);
+        };
 
+        function actualizarpantalla(index1, index2, daño1, daño2){
+            document.getElementById("Jugador").textContent = 
+            "Jugador: " + jugador.vida;
+      
+            document.getElementById("Enemigo").textContent = 
+            "Enemigo: " + enemigo.vida;
+
+            document.getElementById("resultadodaño1").textContent = 
+            "Daño de " + armas[index1].nombre + ": " + daño1;
+
+            document.getElementById("resultadodaño2").textContent = 
+            "Daño de " + armas[index2].nombre + ": " + daño2;
+        };
+
+        function alertas(texto,color = "black"){
+            const contenedor = document.getElementById("alertas");
+            const mensaje = document.createElement("p");
+            mensaje.textContent = texto;
+            mensaje.style.color = color;
+            contenedor.appendChild(mensaje);
+
+            while (contenedor.childElementCount > 5) {
+                contenedor.removeChild(contenedor.firstChild);
+            }
+
+            setTimeout(() => {
+                if (contenedor.contains(mensaje)) {
+                    contenedor.removeChild(mensaje);
+                } 
+            },  10000);
+        };
+        
         document.getElementById("botonatacar")
             .addEventListener("click", turnojugador)
-
         
         function verificarFin(){
             if (enemigo.vida <= 0){
-                alert("¡Ganaste!");
+                alertas("¡Ganaste!");
         } else if (jugador.vida <= 0){
-                alert("¡Perdiste!");
+                alertas("¡Perdiste!");
         }
         };
 
