@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Las grandiosas judias magicas guerreras to guapas</title>
+</head>
+<body>
+    <h1>Las judias guerreras</h1>
+    <div style="display: block;">
+        <p id="Jugador">Jugador: 100</p>
+        <p id="Enemigo">Enemigo: 100</p>
+    </div>
+    <div>
+        <select id="arma1">
+            <option value="0">Espada</option>
+            <option value="1">Lanza</option>
+            <option value="2">Maza</option>
+            <option value="3">Arco</option>
+        </select>
+        <select id="arma2">
+            <option value="0">Espada</option>
+            <option value="1">Lanza</option>
+            <option value="2">Maza</option>
+            <option value="3">Arco</option>
+        </select>
+        <button id="botonatacar">Atacar</button>
+    </div>
+    <div>
+        <h2>Daño</h2>
+        <p id="resultadodaño1">Daño de : 0</p>
+        <p id="resultadodaño2">Daño de : 0</p>
+    </div>
+
+
+    <script>
+        let jugador = {
+            vida: 100
+        };
+
+        let enemigo = {
+            vida: 100,
+            ataque: Math.floor(Math.random() * 2) + 4
+        };
+
+        let armas = {
+            opciones: [
+                {Nombre: "Espada", daño: () => Math.floor(Math.random() * 5) + 5},
+                {Nombre: "Lanza", daño: () => Math.floor(Math.random() * 9) + 6},
+                {Nombre: "Maza", daño: () => Math.floor(Math.random() * 3) + 12},
+                {Nombre: "Arco", daño: () => Math.floor(Math.random() * 6) + 3}
+                ]
+            }
+
+        function actualizarpantalla(index1, index2, daño1, daño2){
+            document.getElementById("Jugador").textContent = 
+            "Jugador: " + jugador.vida;
+      
+            document.getElementById("Enemigo").textContent = 
+            "Enemigo: " + enemigo.vida;
+
+            document.getElementById("resultadodaño1").textContent = 
+            "Daño de " + armas.opciones[index1].Nombre + ": " + daño1;
+
+            document.getElementById("resultadodaño2").textContent = 
+            "Daño de " + armas.opciones[index2].Nombre + ": " + daño2;
+        };
+
+        function turnojugador(){
+            let index1 = document.getElementById("arma1").value;
+            let index2 = document.getElementById("arma2").value;
+
+            let daño1 = armas.opciones[index1].daño();
+            let daño2 = armas.opciones[index2].daño();
+            let dañototal = daño1 + daño2;
+
+            if (index1 === index2){
+                alert("❌No se puede usar la misma arma dos veces❌")
+                return
+            }
+
+            enemigo.vida -= dañototal;
+
+            if (enemigo.vida > 0){
+                turnoenemigo();
+            }
+
+            actualizarpantalla(index1, index2, daño1, daño2);
+            verificarFin();
+        };
+
+        function turnoenemigo(){
+            jugador.vida -= enemigo.ataque;
+        }
+
+        document.getElementById("botonatacar")
+            .addEventListener("click", turnojugador)
+
+        
+        function verificarFin(){
+            if (enemigo.vida <= 0){
+                alert("¡Ganaste!");
+        } else if (jugador.vida <= 0){
+                alert("¡Perdiste!");
+        }
+        };
+
+    </script>
+</body>
+</html>
