@@ -4,7 +4,7 @@
   <p>Game coded with JavaScript, made to practice and learn more about said language due to my studies.</p>
   <p>I am currently working on updating it with the following changes:</p>
   <ol>
-    <li>Upgraded combat system</li>
+    <li>Upgrade combat system</li>
     <li>Set of various enemies, randomizing who you fight with in every level or "dungeon floor"</li>
     <li>Critical damage system, in order to add the "luck" factor in the game</li>
     <li>Fix a bug where you can keep attacking the enemy even when his HP reaches 0 or lower</li>
