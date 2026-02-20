@@ -1,7 +1,7 @@
 <h1>General projects</h1>
 <p>Set of simple programs, which are generaly single-document projects, made to practice on various things, apps, themes...</p>
 <details><summary>Game "Las judias guerreras" -- JS</summary>
-  <p>Game coded with JavaScript, made to practice and learn more about said language due to my studies.</p>
+  <p>Game coded with HTML, CCS and JavaScript, made to practice and learn more about said language due to my studies.</p>
   <p>I am currently working on updating it with the following changes:</p>
   <ol>
     <li>Upgrade combat system</li>
