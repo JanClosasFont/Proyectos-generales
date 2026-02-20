@@ -1,5 +1,5 @@
-<h1>Proyectos Generales</h1>
-<p>Lista de programas hechos hasta el momento</p>
+<h1>General projects</h1>
+<p>Set of simple programs, which are generaly single-document projects, made to practice on various things, apps, themes...</p>
 <details><summary>Game "Las judias guerreras" -- JS</summary>
   <p>Game coded with JavaScript, made to practice and learn more about said language due to my studies.</p>
   <p>I am currently working on updating it with the following changes:</p>
