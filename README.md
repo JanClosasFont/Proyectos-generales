@@ -4,7 +4,7 @@
   <p>Game coded with HTML, CSS and JavaScript, made to practice and learn more about said languages due to my studies.</p>
   <p>I am currently working on updating it with the following changes:</p>
   <ol>
-    <li>Upgrade combat system</li>
+    <li>Upgrade combat system. Block the player from using 2 bows, for example, and many other advanced mechanics</li>
     <li>Set of various enemies, randomizing who you fight with in every level or "dungeon floor"</li>
     <li>Critical damage system, in order to add the "luck" factor in the game - DONE</li>
     <li>Fix a bug where you can keep attacking the enemy even when his HP reaches 0 or lower - DONE</li>
