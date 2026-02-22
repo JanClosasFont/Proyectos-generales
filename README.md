@@ -5,6 +5,7 @@
   <p>I am currently working on updating it with the following changes:</p>
   <ol>
     <li>Upgrade combat system. Block the player from using 2 bows, for example, and many other advanced mechanics</li>
+    <li>Somehow make battles last longer, either with healing methods or defensive buffs</li>
     <li>Set of various enemies, randomizing who you fight with in every level or "dungeon floor"</li>
     <li><s>Critical damage system, in order to add the "luck" factor in the game</s> - DONE</li>
     <li><s>Fix a bug where you can keep attacking the enemy even when his HP reaches 0 or lower</s> - DONE</li>
