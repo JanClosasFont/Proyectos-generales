@@ -6,7 +6,7 @@
   <ol>
     <li>Upgrade combat system. Block the player from using 2 bows, for example, and many other advanced mechanics</li>
     <li>Set of various enemies, randomizing who you fight with in every level or "dungeon floor"</li>
-    <li>Critical damage system, in order to add the "luck" factor in the game - DONE</li>
+    <li><s>Critical damage system, in order to add the "luck" factor in the game</s> - DONE</li>
     <li>Fix a bug where you can keep attacking the enemy even when his HP reaches 0 or lower - DONE</li>
     <li>Stronger weapon combos. Making it funnier to combine certain weapons toghether</li>
     <li>Level system. Max level = 20 (for now). Each level rewards the player with a random object</li>
