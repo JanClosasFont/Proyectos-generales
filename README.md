@@ -11,7 +11,7 @@
     <li>Stronger weapon combos. Making it funnier to combine certain weapons toghether</li>
     <li>Level system. Max level = 20 (for now). Each level rewards the player with a random object</li>
     <li>Inventory system + game saving feature (in a very long future). Inventory will manifest as a little dwarf with a big backpack, who will carry all your objects and follow you all along</li>
-    <li>Add a GUI</li>
+    <li>Advanced GUI</li>
   </ol>
   </details>
 <h4 align="center">Author: Jan Closas Font</h4>
