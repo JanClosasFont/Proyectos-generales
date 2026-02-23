@@ -4,17 +4,60 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <style>
+        body{
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        button{
+            width: 100px;
+            height: 50px;
+            padding: 10px 20px;
+            background: crimson;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover{
+            transform: scale(1.1);
+        }
+        select{
+            width: 30%;
+            height: 20%;
+            border: 1px gray;
+            border-radius: 2px;
+            border-color: gray;
+        }
         #titulo1{
             text-align: center;
             text-decoration: underline;
             border-radius: 5px;
             border-color: green;
         }
-        #vida{
+        #cajavida{
             display: flex;
             justify-content: center;
             gap: 20px;
-            padding-top: 20%;
+            padding-top: 2%;
+        }
+
+        .barravida{
+            width: 200px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: gray;
+            text-align: center;
+            overflow: hidden;
+            margin: 5%;
+        }
+
+        .vida{
+            width: 100%;
+            height: 100%;
+            background-color: green;
+            text-align: center;
         }
         #armas{
             display: flex;
@@ -35,9 +78,13 @@
 </head>
 <body>
     <h1 id="titulo1">Las judias guerreras</h1>
-    <div id="vida">
-        <p id="Jugador">Jugador: 100</p>
-        <p id="Enemigo">Enemigo: 100</p>
+    <div id="cajavida">
+        <div class="barravida">
+            <div id="vidajugador" class="vida">100</div>
+        </div>
+        <div class="barravida">
+            <div id="vidaenemigo" class="vida">100</div>
+        </div>
     </div>
     <div id="armas">
         <div id="armas">
@@ -70,12 +117,20 @@
 
     <script>
         let jugador = {
-            vida: 1000
+            vida: 100
         };
 
         let enemigo = {
-            vida: 1000
+            vida: 100
         };
+
+        class Enemigos{
+            constructor(nombre,minVida,maxVida){
+                this.nombre = nombre;
+                this.minVida = minVida;
+                this.maxVida = maxVida;
+            }
+        }
 
         class Arma{
             constructor(nombre,min,max,critChance,multiplicador){
@@ -115,11 +170,6 @@
             let index1 = parseInt(document.getElementById("arma1").value);
             let index2 = parseInt(document.getElementById("arma2").value);
 
-            if (index1 === index2){
-                alertas("❌No se puede usar la misma arma dos veces❌")
-                return
-            }
-
             let ataque1 = armas[index1].atacar();
             let ataque2 = armas[index2].atacar();
 
@@ -151,11 +201,17 @@
         };
 
         function actualizarpantalla(index1, index2, daño1, daño2){
-            document.getElementById("Jugador").textContent = 
-            "Jugador: " + jugador.vida;
+            document.getElementById("vidajugador").textContent = 
+            jugador.vida;
       
-            document.getElementById("Enemigo").textContent = 
-            "Enemigo: " + enemigo.vida;
+            document.getElementById("vidaenemigo").textContent = 
+            enemigo.vida;
+
+            document.getElementById("vidajugador").style.width =
+            (jugador.vida /100 * 100) + "%";
+
+            document.getElementById("vidaenemigo").style.width =
+            (enemigo.vida /100 * 100) + "%";
 
             document.getElementById("resultadodaño1").textContent = 
             "Daño de " + armas[index1].nombre + ": " + daño1;
